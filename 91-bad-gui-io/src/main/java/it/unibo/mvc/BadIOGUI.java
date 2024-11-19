@@ -74,12 +74,12 @@ public class BadIOGUI {
 
         read.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 //System.out.println(randomGenerator.nextInt());
                 try {
                     final List<String> lines = Files.readAllLines(new File(PATH).toPath());
-                    for(final var example : lines){
-                        System.out.println(example);
+                    for (final var example: lines) {
+                        System.out.println(example); //NOPMD: allowed as this is just an exercise
                     }
                 } catch (IOException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
