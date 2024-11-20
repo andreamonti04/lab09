@@ -74,18 +74,18 @@ public final class SimpleGUIWithFileChooser {
                 }
             }
         });
-    }
-
-    /**
-     * Method for set the dimentions of the screen.
-     */
-    public void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / PROPORTION, sh / PROPORTION);
         frame.setLocationByPlatform(true);
         frame.pack();
+    }
+
+    /**
+     * Method for set the dimentions of the screen.
+     */
+    public void display() {
         frame.setVisible(true);
     }
 
