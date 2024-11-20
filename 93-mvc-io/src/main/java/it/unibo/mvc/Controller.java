@@ -32,6 +32,4 @@ public interface Controller {
      * @throws IllegalStateException if the current string is unset.
      */
     void getCurrentString();
-    
-
 }

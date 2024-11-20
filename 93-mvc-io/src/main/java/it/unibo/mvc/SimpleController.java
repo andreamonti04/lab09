@@ -1,35 +1,50 @@
 package it.unibo.mvc;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 
- *
+ * Implementation of interface Controller.
  */
 public final class SimpleController implements Controller {
 
+    private String currentString;
+    private List<String> history;
+
+    /**
+     * Constructor of SimpleController
+     */
+    public SimpleController() {
+        this.currentString = "";
+        this.history = new LinkedList<>();
+    }
+
     @Override
-    public void setString(String stringToPrint) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setString'");
+    public void setString(final String stringToPrint) {
+        if (stringToPrint.isEmpty()) {
+            throw new IllegalArgumentException("The string cannot be null");
+        }
+        this.currentString = stringToPrint;
+        history.add(stringToPrint);
     }
 
     @Override
     public String getNextString() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNextString'");
+        return this.currentString;
     }
 
     @Override
     public List<String> getHistory() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHistory'");
+        return new LinkedList<>(history);
     }
 
     @Override
     public void getCurrentString() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getCurrentString'");
+        if (currentString.isEmpty()) {
+            throw new IllegalStateException("The current string is unset");
+        }
+        history.add(currentString);
+        System.out.println(currentString);     
     }
 
 }
