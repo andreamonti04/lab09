@@ -25,7 +25,10 @@ public final class SimpleGUI {
     private final SimpleController controller = new SimpleController();
     private static final int PROPORTION = 5;
 
-    public SimpleGUI(){
+    /**
+     * Constructor of SimpleGUI.
+     */
+    public SimpleGUI() {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         final JPanel panel = new JPanel(new BorderLayout());
         final JTextField textField = new JTextField();
@@ -39,10 +42,10 @@ public final class SimpleGUI {
         print.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 try {
                     controller.setString(textField.getText());
-                    controller.getCurrentString();
+                    controller.printCurrentString();
                     textField.setText("");
                 } catch (IllegalArgumentException e1) {
                     JOptionPane.showMessageDialog(frame, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -54,7 +57,7 @@ public final class SimpleGUI {
         show.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(final ActionEvent e) {
                 try {
                     for (final String text : controller.getHistory()) {
                         textArea.append(text + "\n");
@@ -81,6 +84,10 @@ public final class SimpleGUI {
         frame.setVisible(true);
     }
 
+    /**
+     * Main method that starts the graphical application.
+     * @param args
+     */
     public static void main(final String[] args) {
         final SimpleGUI sGUI = new SimpleGUI();
         sGUI.display();

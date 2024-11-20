@@ -13,13 +13,13 @@ public interface Controller {
      * Null values are not acceptable, and an exception should be produced
      * @param stringToPrint
      */
-    void setString (String stringToPrint);
+    void setString(String stringToPrint);
 
     /**
      * A method for getting the next string to print.
      * @return the next string to print
      */
-    String getNextString ();
+    String getNextString();
 
     /**
      * A method for getting the history of the printed strings.
@@ -29,7 +29,7 @@ public interface Controller {
 
     /**
      * A method that prints the current string.
-     * @throws IllegalStateException if the current string is unset.
+     * If the current string is unset, an @exception IllegalStateException should be thrown.
      */
-    void getCurrentString();
+    void printCurrentString();
 }

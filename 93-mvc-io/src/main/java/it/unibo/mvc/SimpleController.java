@@ -9,10 +9,10 @@ import java.util.List;
 public final class SimpleController implements Controller {
 
     private String currentString;
-    private List<String> history;
+    private final List<String> history;
 
     /**
-     * Constructor of SimpleController
+     * Constructor of SimpleController.
      */
     public SimpleController() {
         this.currentString = "";
@@ -39,12 +39,12 @@ public final class SimpleController implements Controller {
     }
 
     @Override
-    public void getCurrentString() {
+    public void printCurrentString() {
         if (currentString.isEmpty()) {
             throw new IllegalStateException("The current string is unset");
         }
         history.add(currentString);
-        System.out.println(currentString);     
+        System.out.println(currentString); //NOPMD: print in stdout is allowed
     }
 
 }
