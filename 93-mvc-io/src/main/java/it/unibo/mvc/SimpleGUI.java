@@ -2,6 +2,7 @@ package it.unibo.mvc;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,7 @@ import javax.swing.WindowConstants;
  */
 public final class SimpleGUI {
 
-    private final JFrame frame = new JFrame();
+    private final JFrame frame = new JFrame("Simple GUI");
     private final SimpleController controller = new SimpleController();
     private static final int PROPORTION = 5;
 
@@ -29,16 +30,22 @@ public final class SimpleGUI {
      * Constructor of SimpleGUI.
      */
     public SimpleGUI() {
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         final JPanel panel = new JPanel(new BorderLayout());
-        final JTextField textField = new JTextField();
+        frame.add(panel);
+        final JTextField textField = new JTextField("Text Field");
         panel.add(textField, BorderLayout.NORTH);
-        final JTextArea textArea = new JTextArea();
+        final JTextArea textArea = new JTextArea("Text Area:\n");
         textArea.setEditable(false);
         panel.add(textArea, BorderLayout.CENTER);
-        final JPanel southPanel = new JPanel(new BorderLayout());
         final JButton print = new JButton("Print");
-        southPanel.add(print, BorderLayout.SOUTH);
+        final JButton show = new JButton("Show history");
+        final JPanel button = new JPanel();
+        panel.add(button, BorderLayout.SOUTH);
+        button.setLayout(new FlowLayout(FlowLayout.CENTER));
+        button.add(show);
+        button.add(print);
+        frame.setContentPane(panel);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         print.addActionListener(new ActionListener() {
 
             @Override
@@ -52,8 +59,6 @@ public final class SimpleGUI {
                 }
             }
         });
-        final JButton show = new JButton("Show history");
-        southPanel.add(show, BorderLayout.SOUTH);
         show.addActionListener(new ActionListener() {
 
             @Override
@@ -67,14 +72,12 @@ public final class SimpleGUI {
                 }
             }
         });
-        frame.add(panel, BorderLayout.NORTH);
-        frame.add(southPanel, BorderLayout.SOUTH);
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / PROPORTION, sh / PROPORTION);
         frame.setLocationByPlatform(true);
-        frame.pack();
+        //frame.pack();
     }
 
     /**
