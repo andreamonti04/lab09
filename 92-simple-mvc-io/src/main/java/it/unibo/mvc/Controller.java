@@ -1,9 +1,9 @@
 package it.unibo.mvc;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Application controller. Performs the I/O.
@@ -11,47 +11,50 @@ import java.io.PrintStream;
 public class Controller {
     public static final String SEP = File.separator;
     public static final String FILE_NAME = System.getProperty("user.home") + SEP + "output.txt";
-    private File destination;
+    private File currentFile;
 
     public Controller(){
-        this.destination = new File(FILE_NAME);
+        this.currentFile = new File(FILE_NAME);
     }
 
     /**
-     * A method for setting a File as a current file
+     * Sets a File as a current file
      * @return setting file
      */
-    public void setDestination(final File dfile){
-        setDestination(dfile);
+    public void setCurrentFile(final File dfile){
+        this.currentFile = dfile;
     }
 
     /**
-     * A method for getting the current File
+     * Gets the current File
      * @return the current file
      */
-    public File getDestination() {
-        return destination;
+    public File getcurrentFile() {
+        return currentFile;
     }
 
     /**
-     * A method for getting the path (in form of String) 
+     * Gets the path (in form of String) 
      * of the current `File`
      * @return the current file path
      */
     public String getPathDestination(){
-        return destination.getPath();
+        return currentFile.getPath();
     }
 
     /**
-     * A method that gets a `String` as input and 
+     * Gets a `String` as input and 
      * saves its content on the current file.
      * @throws IOException
      */
     public void save (final String adder) throws IOException{
-        try(PrintStream ps = new PrintStream(destination)){
-    
+        try(PrintStream ps = new PrintStream(currentFile, StandardCharsets.UTF_8)){
+            if (adder.isEmpty()) {
+                ps.close();
+                throw new IllegalArgumentException("The string is empty");
+            }    
+            ps.println(adder);      
         }
-
     }
 
     
