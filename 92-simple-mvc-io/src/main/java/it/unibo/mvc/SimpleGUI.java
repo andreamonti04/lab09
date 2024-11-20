@@ -21,10 +21,10 @@ public final class SimpleGUI {
 
     private final JFrame frame = new JFrame("My first Java graphical interface");
     private final Controller controller = new Controller();
-    private final static int PROPORTION = 5;
+    private static final int PROPORTION = 5;
 
     /**
-     * Constructor of SimpleGUI
+     * Constructor of SimpleGUI.
      */
     public SimpleGUI() {
         final JPanel panel = new JPanel();
@@ -38,23 +38,21 @@ public final class SimpleGUI {
         save.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
+            public void actionPerformed(final ActionEvent e) {
+                try {
                     controller.save(text.getText());
                     JOptionPane.showMessageDialog(frame, "The string is saved!", "Modify file", JOptionPane.INFORMATION_MESSAGE);
                     text.setText("");
-                } catch (IOException e1){
+                } catch (IOException e1) {
                     JOptionPane.showMessageDialog(frame, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                } catch (IllegalAccessError e2){
-                    JOptionPane.showMessageDialog(frame, e2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }  
+            }
         });
         this.frame.setContentPane(panel);
     }
 
     /**
-     * Method for set the dimentions of the screen 
+     * Method for set the dimentions of the screen.
      */
     public void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -66,8 +64,12 @@ public final class SimpleGUI {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        SimpleGUI sGui = new SimpleGUI();
+    /**
+     * Main method that starts the graphical application.
+     * @param args
+     */
+    public static void main(final String[] args) {
+        final SimpleGUI sGui = new SimpleGUI();
         sGui.display();
     }
 }
