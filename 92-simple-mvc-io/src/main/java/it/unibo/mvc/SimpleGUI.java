@@ -54,7 +54,6 @@ public final class SimpleGUI {
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / PROPORTION, sh / PROPORTION);
         frame.setLocationByPlatform(true);
-        frame.pack();
     }
 
     /**
